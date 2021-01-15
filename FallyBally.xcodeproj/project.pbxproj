@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C6525B1D8AB003546CA /* FallyBallyApp.swift */; };
+		22890C6825B1D8AB003546CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C6725B1D8AB003546CA /* ContentView.swift */; };
+		22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22890C6925B1D8AC003546CA /* Assets.xcassets */; };
+		22890C6D25B1D8AC003546CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */; };
+		22890C7825B1D8AC003546CA /* FallyBallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C7725B1D8AC003546CA /* FallyBallyTests.swift */; };
+		22890C8325B1D8AC003546CA /* FallyBallyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22890C7425B1D8AC003546CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22890C5A25B1D8AB003546CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22890C6125B1D8AB003546CA;
+			remoteInfo = FallyBally;
+		};
+		22890C7F25B1D8AC003546CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22890C5A25B1D8AB003546CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22890C6125B1D8AB003546CA;
+			remoteInfo = FallyBally;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		22890C6225B1D8AB003546CA /* FallyBally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallyBally.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22890C6525B1D8AB003546CA /* FallyBallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyApp.swift; sourceTree = "<group>"; };
+		22890C6725B1D8AB003546CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		22890C6925B1D8AC003546CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		22890C6E25B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallyBallyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22890C7725B1D8AC003546CA /* FallyBallyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyTests.swift; sourceTree = "<group>"; };
+		22890C7925B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallyBallyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyUITests.swift; sourceTree = "<group>"; };
+		22890C8425B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22890C5F25B1D8AB003546CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C7025B1D8AC003546CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C7B25B1D8AC003546CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		22890C5925B1D8AB003546CA = {
+			isa = PBXGroup;
+			children = (
+				22890C6425B1D8AB003546CA /* FallyBally */,
+				22890C7625B1D8AC003546CA /* FallyBallyTests */,
+				22890C8125B1D8AC003546CA /* FallyBallyUITests */,
+				22890C6325B1D8AB003546CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22890C6325B1D8AB003546CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22890C6225B1D8AB003546CA /* FallyBally.app */,
+				22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */,
+				22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22890C6425B1D8AB003546CA /* FallyBally */ = {
+			isa = PBXGroup;
+			children = (
+				22890C6525B1D8AB003546CA /* FallyBallyApp.swift */,
+				22890C6725B1D8AB003546CA /* ContentView.swift */,
+				22890C6925B1D8AC003546CA /* Assets.xcassets */,
+				22890C6E25B1D8AC003546CA /* Info.plist */,
+				22890C6B25B1D8AC003546CA /* Preview Content */,
+			);
+			path = FallyBally;
+			sourceTree = "<group>";
+		};
+		22890C6B25B1D8AC003546CA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		22890C7625B1D8AC003546CA /* FallyBallyTests */ = {
+			isa = PBXGroup;
+			children = (
+				22890C7725B1D8AC003546CA /* FallyBallyTests.swift */,
+				22890C7925B1D8AC003546CA /* Info.plist */,
+			);
+			path = FallyBallyTests;
+			sourceTree = "<group>";
+		};
+		22890C8125B1D8AC003546CA /* FallyBallyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */,
+				22890C8425B1D8AC003546CA /* Info.plist */,
+			);
+			path = FallyBallyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22890C6125B1D8AB003546CA /* FallyBally */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBally" */;
+			buildPhases = (
+				22890C5E25B1D8AB003546CA /* Sources */,
+				22890C5F25B1D8AB003546CA /* Frameworks */,
+				22890C6025B1D8AB003546CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FallyBally;
+			productName = FallyBally;
+			productReference = 22890C6225B1D8AB003546CA /* FallyBally.app */;
+			productType = "com.apple.product-type.application";
+		};
+		22890C7225B1D8AC003546CA /* FallyBallyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22890C8A25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyTests" */;
+			buildPhases = (
+				22890C6F25B1D8AC003546CA /* Sources */,
+				22890C7025B1D8AC003546CA /* Frameworks */,
+				22890C7125B1D8AC003546CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22890C7525B1D8AC003546CA /* PBXTargetDependency */,
+			);
+			name = FallyBallyTests;
+			productName = FallyBallyTests;
+			productReference = 22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		22890C7D25B1D8AC003546CA /* FallyBallyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22890C8D25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyUITests" */;
+			buildPhases = (
+				22890C7A25B1D8AC003546CA /* Sources */,
+				22890C7B25B1D8AC003546CA /* Frameworks */,
+				22890C7C25B1D8AC003546CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22890C8025B1D8AC003546CA /* PBXTargetDependency */,
+			);
+			name = FallyBallyUITests;
+			productName = FallyBallyUITests;
+			productReference = 22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22890C5A25B1D8AB003546CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					22890C6125B1D8AB003546CA = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					22890C7225B1D8AC003546CA = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 22890C6125B1D8AB003546CA;
+					};
+					22890C7D25B1D8AC003546CA = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 22890C6125B1D8AB003546CA;
+					};
+				};
+			};
+			buildConfigurationList = 22890C5D25B1D8AB003546CA /* Build configuration list for PBXProject "FallyBally" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 22890C5925B1D8AB003546CA;
+			productRefGroup = 22890C6325B1D8AB003546CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22890C6125B1D8AB003546CA /* FallyBally */,
+				22890C7225B1D8AC003546CA /* FallyBallyTests */,
+				22890C7D25B1D8AC003546CA /* FallyBallyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22890C6025B1D8AB003546CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22890C6D25B1D8AC003546CA /* Preview Assets.xcassets in Resources */,
+				22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C7125B1D8AC003546CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C7C25B1D8AC003546CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22890C5E25B1D8AB003546CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22890C6825B1D8AB003546CA /* ContentView.swift in Sources */,
+				22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C6F25B1D8AC003546CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22890C7825B1D8AC003546CA /* FallyBallyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22890C7A25B1D8AC003546CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22890C8325B1D8AC003546CA /* FallyBallyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22890C7525B1D8AC003546CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22890C6125B1D8AB003546CA /* FallyBally */;
+			targetProxy = 22890C7425B1D8AC003546CA /* PBXContainerItemProxy */;
+		};
+		22890C8025B1D8AC003546CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22890C6125B1D8AB003546CA /* FallyBally */;
+			targetProxy = 22890C7F25B1D8AC003546CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		22890C8525B1D8AC003546CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		22890C8625B1D8AC003546CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		22890C8825B1D8AC003546CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FallyBally/Preview Content\"";
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FallyBally/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBally;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22890C8925B1D8AC003546CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FallyBally/Preview Content\"";
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FallyBally/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBally;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		22890C8B25B1D8AC003546CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				INFOPLIST_FILE = FallyBallyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallyBally.app/FallyBally";
+			};
+			name = Debug;
+		};
+		22890C8C25B1D8AC003546CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				INFOPLIST_FILE = FallyBallyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallyBally.app/FallyBally";
+			};
+			name = Release;
+		};
+		22890C8E25B1D8AC003546CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				INFOPLIST_FILE = FallyBallyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FallyBally;
+			};
+			name = Debug;
+		};
+		22890C8F25B1D8AC003546CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8P6BA4WGF;
+				INFOPLIST_FILE = FallyBallyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FallyBally;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22890C5D25B1D8AB003546CA /* Build configuration list for PBXProject "FallyBally" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22890C8525B1D8AC003546CA /* Debug */,
+				22890C8625B1D8AC003546CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBally" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22890C8825B1D8AC003546CA /* Debug */,
+				22890C8925B1D8AC003546CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22890C8A25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22890C8B25B1D8AC003546CA /* Debug */,
+				22890C8C25B1D8AC003546CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22890C8D25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22890C8E25B1D8AC003546CA /* Debug */,
+				22890C8F25B1D8AC003546CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22890C5A25B1D8AB003546CA /* Project object */;
+}
