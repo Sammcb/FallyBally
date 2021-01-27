@@ -17,16 +17,26 @@ class Ball: SKShapeNode {
 		case purple
 	}
 	
-	var color: Color = .red
+	var ui: UI?
+	var color: Color = .red {
+		didSet {
+			guard oldValue != color else {
+				return
+			}
+			paint()
+			ui!.scoreXLabel.text = "x\(color.rawValue)"
+			ui!.scoreXLabel.paint(fillColor)
+		}
+	}
 	
 	init(radius: CGFloat) {
 		super.init()
 		name = "ball"
 		let box = CGRect(origin: CGPoint(x: -radius, y: -radius), size: CGSize(width: 2 * radius, height: 2 * radius))
 		path = CGPath.init(ellipseIn: box, transform: nil)
-		lineWidth = 0
-		physicsBody = SKPhysicsBody(circleOfRadius: radius)
-		physicsBody!.restitution = 0.6
+		physicsBody = SKPhysicsBody(circleOfRadius: radius - 1)
+		physicsBody!.restitution = 0.4
+		physicsBody!.friction = 0.25
 		physicsBody!.allowsRotation = false
 		physicsBody!.categoryBitMask = 3
 		physicsBody!.collisionBitMask = 3
@@ -41,26 +51,30 @@ class Ball: SKShapeNode {
 		switch color {
 			case .red:
 				fillColor = .systemRed
+				strokeColor = .systemRed
 			case .orange:
 				fillColor = .systemOrange
+				strokeColor = .systemOrange
 			case .yellow:
 				fillColor = .systemYellow
+				strokeColor = .systemYellow
 			case .green:
 				fillColor = .systemGreen
+				strokeColor = .systemGreen
 			case .blue:
 				fillColor = .systemBlue
+				strokeColor = .systemBlue
 			case .purple:
 				fillColor = .systemPurple
+				strokeColor = .systemPurple
 		}
 	}
 	
 	func oneUp() {
 		color = Color(rawValue: color.rawValue + 1)!
-		paint()
 	}
 	
 	func die() {
 		color = Color(rawValue: color.rawValue - 1)!
-		paint()
 	}
 }

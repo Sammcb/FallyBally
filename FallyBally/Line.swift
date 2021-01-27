@@ -13,13 +13,9 @@ class Line: SKShapeNode {
 	
 	init(width: CGFloat, height: CGFloat) {
 		super.init()
-		name = "line"
 		let box = CGRect(origin: CGPoint.zero, size: CGSize(width: width, height: height))
 		path = CGPath.init(roundedRect: box, cornerWidth: 2, cornerHeight: 2, transform: nil)
-		physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height), center: CGPoint(x: width / 2, y: height / 2))
-		physicsBody!.isDynamic = false
-		lineWidth = 0
-		fillColor = nodeColor
+		physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: box.maxY), to: CGPoint(x: box.maxX, y: box.maxY))
 		physicsBody!.categoryBitMask = 1
 		physicsBody!.collisionBitMask = 0
 		physicsBody!.contactTestBitMask = 1
@@ -32,6 +28,7 @@ class Line: SKShapeNode {
 	func paint(_ color: UIColor) {
 		nodeColor = color
 		fillColor = color
+		strokeColor = color
 	}
 	
 	func paint() {

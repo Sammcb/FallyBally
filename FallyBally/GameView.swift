@@ -8,6 +8,18 @@
 import SwiftUI
 import SpriteKit
 
+let colorModeKey = "colorModeDidChange"
+
+extension SKView {
+	open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+		super.traitCollectionDidChange(previousTraitCollection)
+		guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else {
+			return
+		}
+		NotificationCenter.default.post(Notification(name: Notification.Name(colorModeKey)))
+	}
+}
+
 struct GameView: View {
 	private let gameWidth = UIScreen.main.bounds.width
 	private let gameHeight = UIScreen.main.bounds.height
@@ -22,5 +34,6 @@ struct GameView: View {
 		SpriteView(scene: scene)
 			.edgesIgnoringSafeArea(.all)
 			.frame(width: gameWidth, height: gameHeight)
+			.statusBar(hidden: true)
 	}
 }

@@ -16,6 +16,11 @@ class Text: SKLabelNode {
 		fontSize = 20
 	}
 	
+	convenience init(_ text: String) {
+		self.init()
+		self.text = text
+	}
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}

@@ -8,105 +8,63 @@
 import SpriteKit
 import GameKit
 
-//class World: SKNode {
-//	
-//}
-//
-//class UI: SKNode {
-//	
-//}
-
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
-	// UI
-	let restartButton = Button(symbolName: "goforward", width: 30)
-	let playButton = Button(symbolName: "play.fill", width: 30)
-	let pauseButton = Button(symbolName: "pause.circle.fill", width: 30)
-	let resumeButton = Button(symbolName: "play.circle.fill", width: 30)
-	let highScoreLabel = Text()
-	let highScoreSymbol = ScaleableNode(symbolName: "crown.fill", width: 20)
-	let scoreLabel = Text()
-	let scoreXLabel = Text()
-	let uiY: CGFloat = 90
-	let uiX: CGFloat = 50
-	var gameView: SKView?
-	var colorMode: UIUserInterfaceStyle?
-	var colorModeObserver: NSKeyValueObservation?
-	
-	// Game
-	let localStorage = UserDefaults.standard
+	// MARK: - Game objects
 	let ballOffset: CGFloat = 100
 	let ball = Ball(radius: 10)
 	let cam = SKCameraNode()
 	let lines = Lines()
-	var score = 0
-	var highScore = 0
-	var start = false
+	let ui = UI()
 	
-	// Game Center
-	let localPlayer = GKLocalPlayer.local
-	var scoresLeaderboard: GKLeaderboard?
-	
-	// Recolor elements to match system color theme
-	func paint() {
-		backgroundColor = .systemBackground
-		ball.paint()
-		lines.paint()
-		restartButton.paint()
-		playButton.paint()
-		pauseButton.paint()
-		resumeButton.paint()
-		highScoreLabel.paint()
-		highScoreSymbol.paint()
-		scoreLabel.paint()
-		scoreXLabel.paint()
-	}
-	
-	// Start a new game
-	func buildLevel() {
-		// Display the Game Center Access Point
-		if localPlayer.isAuthenticated {
-			GKAccessPoint.shared.isActive = true
+	// MARK: - Score tracking
+	var score = 0 {
+		didSet {
+			guard oldValue != score else {
+				return
+			}
+			ui.scoreLabel.text = "\(score)"
 		}
-		
-		// Init score
-		score = 0
-		
-		// Set camera position
-		cam.position = CGPoint(x: frame.midX, y: frame.midY)
-		
-		// Set the UI element positions
-		playButton.position = CGPoint.zero
-		playButton.isHidden = false
-		
-		pauseButton.position = CGPoint(x: frame.midX - uiX, y: -frame.midY + uiY)
-		pauseButton.isHidden = true
-		
-		resumeButton.position = pauseButton.position
-		resumeButton.isHidden = true
-		
-		restartButton.position = CGPoint.zero
-		restartButton.isHidden = true
-		
-		highScoreLabel.text = "\(highScore)"
-		highScoreLabel.position = CGPoint(x: 0, y: frame.midY - uiY)
-		
-		highScoreSymbol.position = CGPoint(x: 0, y: highScoreLabel.frame.height + 5)
-		
-		scoreLabel.text = "\(score)"
-		scoreLabel.position = CGPoint(x: frame.midX / 2 + 20, y: frame.midY - uiY)
-		
-		scoreXLabel.text = "x\(ball.color.rawValue)"
-		scoreXLabel.position = CGPoint(x: 0, y: -scoreLabel.frame.height)
-		scoreXLabel.paint(ball.fillColor)
-		
-		// Place the ball and prevent movement
-		ball.position = CGPoint(x: 0, y: ballOffset)
-		ball.physicsBody!.isDynamic = false
-		
-		// Place the platforms
-		lines.nextY = cam.position.y
-		lines.place()
 	}
+	var highscore = 0 {
+		didSet {
+			guard oldValue != highscore else {
+				return
+			}
+			ui.highscoreLabel.text = "\(highscore)"
+		}
+	}
+	
+	// MARK: - Pausing
+	var playing = false
+	override var isPaused: Bool {
+		didSet {
+			guard playing else {
+				return
+			}
+
+			if isPaused {
+				ui.showPause()
+				pause()
+			}
+		}
+	}
+	
+	// MARK: - Camera speed
+	// Increase by 1.5 points per frame over the course of 8 minutes
+	let camSpeedDelta: CGFloat = 1.5 / (6 * 3600)
+	let minCamSpeed: CGFloat = 1.5
+	let maxCamSpeed: CGFloat = 3
+	var camSpeed: CGFloat = 0
+	
+	// MARK: - Achievements
+	var didUpgrade = false
+	var startTime = Date()
+	
+	// MARK: - Game Center
+	let localPlayer = GKLocalPlayer.local
+	
+	// MARK: - Local save data
+	let localStorage = UserDefaults.standard
 	
 	func authenticateUser() {
 		localPlayer.authenticateHandler = { viewController, error in
@@ -120,91 +78,46 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 			
 			GKAccessPoint.shared.location = .topLeading
 			GKAccessPoint.shared.showHighlights = false
-			GKAccessPoint.shared.isActive = self.localPlayer.isAuthenticated
+			GKAccessPoint.shared.isActive = !self.ui.playButton.isHidden
 			GKLeaderboard.loadLeaderboards(IDs: ["scores"]) { leaderboards, error in
 				guard error == nil else {
 					return
 				}
-					
-				self.scoresLeaderboard = leaderboards!.first!
-				self.scoresLeaderboard?.loadEntries(for: [self.localPlayer], timeScope: .allTime) { entry, entries, error in
+				
+				leaderboards!.first!.loadEntries(for: [self.localPlayer], timeScope: .allTime) { entry, entries, error in
 					guard error == nil else {
 						return
 					}
 					
-					guard entry != nil else {
+					guard let highscore = entries?.first?.score, highscore > self.highscore else {
 						return
 					}
 					
-					self.highScore = entry!.score
-					
-					print("SCORES: \(entry!.score)")
+					self.highscore = highscore
 				}
 			}
 		}
 	}
 	
 	override func didMove(to view: SKView) {
-		// Store the view and color scheme for color scheme change detection
-		gameView = view
-		colorMode = view.traitCollection.userInterfaceStyle
+		view.ignoresSiblingOrder = true
 		
-		// Connect to game center
-		authenticateUser()
-		
-		// Init highscore
-		if !localPlayer.isAuthenticated {
-			highScore = localStorage.integer(forKey: "highscore")
-		}
-		
-		// Set up physics contact handler
 		physicsWorld.contactDelegate = self
 		
-		// Set the camera
 		camera = cam
 		addChild(cam)
 		
-		// UI init
-		playButton.zPosition = 2
-		cam.addChild(playButton)
+		authenticateUser()
 		
-		pauseButton.zPosition = 2
-		cam.addChild(pauseButton)
+		didUpgrade = false
 		
-		resumeButton.zPosition = 2
-		cam.addChild(resumeButton)
-		
-		restartButton.zPosition = 2
-		cam.addChild(restartButton)
-		
-		highScoreLabel.zPosition = 2
-		highScoreLabel.verticalAlignmentMode = .center
-		highScoreLabel.horizontalAlignmentMode = .center
-		cam.addChild(highScoreLabel)
-		
-		highScoreSymbol.zPosition = 2
-		highScoreSymbol.paint(.systemYellow)
-		highScoreLabel.addChild(highScoreSymbol)
-		
-		scoreLabel.zPosition = 2
-		scoreLabel.verticalAlignmentMode = .center
-		scoreLabel.horizontalAlignmentMode = .center
-		cam.addChild(scoreLabel)
-		
-		scoreXLabel.zPosition = 2
-		scoreXLabel.verticalAlignmentMode = .center
-		scoreXLabel.horizontalAlignmentMode = .center
-		scoreXLabel.fontSize = 15
-		scoreLabel.addChild(scoreXLabel)
-		
-		// Spawn ball
 		ball.zPosition = 1
-		cam.addChild(ball)
+		ball.ui = ui
+		addChild(ball)
 		
-		// Generate lines and hearts
-		lines.set(frame: frame)
-		for _ in stride(from: cam.position.y + frame.midY, to: cam.position.y - frame.midY - ballOffset, by: -lines.distance) {
-			let line = Line(width: 60, height: 5)
+		lines.bounds = frame
+		for _ in stride(from: size.height, to: -ballOffset, by: -lines.distance) {
+			let line = Line(width: 60, height: 4)
 			let heart = Heart()
 			line.addChild(heart)
 			heart.position = CGPoint(x: line.frame.midX, y: line.frame.maxY + 15)
@@ -212,8 +125,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		}
 		addChild(lines)
 		
-		paint()
-		buildLevel()
+		form()
+		
+		cam.addChild(ui)
+		ui.world = self
+		ui.bounds = frame
+		ui.paint()
+		ui.form()
+		NotificationCenter.default.addObserver(ui, selector: #selector(ui.paint), name: NSNotification.Name(rawValue: colorModeKey), object: nil)
+		
+		pause()
 	}
 	
 	// Detect if a node was tapped
@@ -222,46 +143,37 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		// Start the game
-		guard start || !pressed(button: playButton, at: touches.first!) else {
-			playButton.flash()
-			ball.physicsBody!.isDynamic = true
-			start = true
-			playButton.hide()
-			pauseButton.show()
-			GKAccessPoint.shared.isActive = false
+		if isPaused {
 			return
 		}
 		
-		// Pause the game
-		guard isPaused || !start || !pressed(button: pauseButton, at: touches.first!) else {
-			pauseButton.flash()
-			isPaused = true
-			pauseButton.isHidden = true
-			resumeButton.isHidden = false
+		if pressed(button: ui.playButton, at: touches.first!) {
+			startTime = Date()
+			ui.showPlay()
+			resume()
 			return
 		}
 		
-		// Resume the game
-		guard !isPaused || !start || !pressed(button: resumeButton, at: touches.first!) else {
-			isPaused = false
-			resumeButton.flash()
-			pauseButton.isHidden = false
-			resumeButton.isHidden = true
+		if pressed(button: ui.pauseButton, at: touches.first!) {
+			ui.showPause()
+			pause()
 			return
 		}
 		
-		// Resets the level
-		guard !isPaused || !start || !pressed(button: restartButton, at: touches.first!) else {
-			isPaused = false
-			restartButton.flash()
-			start = false
-			buildLevel()
+		if pressed(button: ui.resumeButton, at: touches.first!) {
+			ui.showPlay()
+			resume()
+			return
+		}
+
+		if pressed(button: ui.restartButton, at: touches.first!) {
+			form()
+			ui.form()
 			return
 		}
 		
 		// Absorbe taps when paused
-		guard !isPaused else {
+		guard playing else {
 			return
 		}
 		
@@ -270,111 +182,198 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	func didBegin(_ contact: SKPhysicsContact) {
-		let ballNode = (contact.bodyA.node!.name == "ball" ? contact.bodyA.node! : contact.bodyB.node!) as! Ball
 		let otherNode = contact.bodyA.node!.name != "ball" ? contact.bodyA.node! : contact.bodyB.node!
 		if let heartNode = otherNode as? Heart {
-			guard ball.color != .purple else {
-				// give player points
+			if ball.color == .purple {
+				let bonus = 100
+				score += bonus
+				heartNode.score(bonus)
+				let upgradeOverflow = GKAchievement(identifier: "upgradeOverflow")
+				if !upgradeOverflow.isCompleted {
+					achieve(achievement: upgradeOverflow)
+				}
+			} else {
+				didUpgrade = true
+				ball.oneUp()
+				heartNode.collect()
+				switch ball.color {
+					case .orange:
+						let orange = GKAchievement(identifier: "orangeUpgrade")
+						if !orange.isCompleted {
+							achieve(achievement: orange)
+						}
+						break
+					case .yellow:
+						let yellow = GKAchievement(identifier: "yellowUpgrade")
+						if !yellow.isCompleted {
+							achieve(achievement: yellow)
+						}
+						break
+					case .green:
+						let green = GKAchievement(identifier: "greenUpgrade")
+						if !green.isCompleted {
+							achieve(achievement: green)
+						}
+						break
+					case .blue:
+						let blue = GKAchievement(identifier: "blueUpgrade")
+						if !blue.isCompleted {
+							achieve(achievement: blue)
+						}
+						break
+					case .purple:
+						let purple = GKAchievement(identifier: "purpleUpgrade")
+						if !purple.isCompleted {
+							achieve(achievement: purple)
+						}
+						break
+					default:
+						break
+				}
+			}
+		} else if let lineNode = otherNode as? Line {
+			if lineNode.scored {
+				let scoreAgain = GKAchievement(identifier: "scoreAgain")
+				if !scoreAgain.isCompleted {
+					achieve(achievement: scoreAgain)
+				}
 				return
 			}
-			ballNode.oneUp()
-			heartNode.collect()
-			scoreXLabel.text = "x\(ball.color.rawValue)"
-			scoreXLabel.paint(ball.fillColor)
-		} else if let lineNode = otherNode as? Line {
-			lineNode.score(ballNode.fillColor)
+			lineNode.score(ball.fillColor)
 			score += ball.color.rawValue
-			scoreLabel.text = "\(score)"
-		}
-	}
-	
-	func updateGameCenter() {
-		if scoresLeaderboard != nil {
-			print(scoresLeaderboard!)
-			scoresLeaderboard!.submitScore(score, context: 0, player: localPlayer) {error in
-				guard error == nil else {
-					return
+			if !didUpgrade && score >= 100 {
+				let hundred = GKAchievement(identifier: "oneHundRed")
+				if !hundred.isCompleted {
+					achieve(achievement: hundred)
 				}
 			}
 		}
-		
-//		let firstGame = GKAchievement(identifier: "firstGame")
-//		if !firstGame.isCompleted {
-//			firstGame.percentComplete = 100
-//			firstGame.showsCompletionBanner = true
-//		}
-//		GKAchievement.report([firstGame]) { error in
-//			guard error == nil else {
-//				return
-//			}
-//		}
 	}
 	
-	// Resets the game, saves the game information, and tells the viewcontroller the game ended
-	func reset() {
-		// Hide gamplay buttons
-		if !pauseButton.isHidden {
-			pauseButton.isHidden = true
+	func form() {
+		score = 0
+
+		cam.position = CGPoint(x: frame.midX, y: frame.midY)
+		camSpeed = minCamSpeed
+		lines.camSpeed = Double(camSpeed)
+		
+		ball.position = CGPoint(x: cam.position.x, y: cam.position.y + ballOffset)
+		ball.physicsBody!.velocity = CGVector.zero
+		
+		lines.nextY = cam.position.y
+		lines.shouldSpawnHeart = 10
+		lines.place()
+		
+		if !localPlayer.isAuthenticated {
+			highscore = localStorage.integer(forKey: "highscore")
 		}
-		if !resumeButton.isHidden {
-			resumeButton.isHidden = true
+	}
+	
+	func achieve(achievement: GKAchievement, progress: Double = 100) {
+		achievement.percentComplete = progress
+		achievement.showsCompletionBanner = true
+		GKAchievement.report([achievement]) { error in
+			guard error == nil else {
+				return
+			}
+		}
+	}
+	
+	func updateLeaderboard() {
+		guard localPlayer.isAuthenticated else {
+			return
 		}
 		
-		// Show the reset button
-		restartButton.isHidden = false
-		
-		// Update highscore
-		if score > highScore {
-			highScore = score
-			localStorage.set(highScore, forKey: "highscore")
-			highScoreLabel.text = "\(highScore)"
-			updateGameCenter()
+		GKLeaderboard.submitScore(score, context: 0, player: localPlayer, leaderboardIDs: ["scores"]) { error in
+			guard error == nil else {
+				return
+			}
+		}
+	}
+	
+	func updateAchievements() {
+		guard localPlayer.isAuthenticated else {
+			return
 		}
 		
-		// Pause the game to stop platforms
-		isPaused = true
+		let firstGame = GKAchievement(identifier: "firstGame")
+		if !firstGame.isCompleted {
+			achieve(achievement: firstGame)
+		}
+		
+		let score1k = GKAchievement(identifier: "score1000")
+		if !score1k.isCompleted {
+			if score >= 1000 {
+				achieve(achievement: score1k)
+			} else {
+				achieve(achievement: score1k, progress: round(Double(score) / 1000 * 100))
+			}
+		}
+		
+		let score5k = GKAchievement(identifier: "score5000")
+		if !score5k.isCompleted {
+			if score >= 5000 {
+				achieve(achievement: score5k)
+			} else  {
+				achieve(achievement: score5k, progress: round(Double(score) / 5000 * 100))
+			}
+		}
+		
+		let quickGame = GKAchievement(identifier: "quickGame")
+		if !quickGame.isCompleted && Date() < startTime.addingTimeInterval(10) {
+			achieve(achievement: quickGame)
+		}
+	}
+	
+	func pause() {
+		playing = false
+		physicsWorld.speed = 0
+		for child in children {
+			child.isPaused = true
+		}
+	}
+	
+	func resume() {
+		playing = true
+		physicsWorld.speed = 1
+		for child in children {
+			child.isPaused = false
+		}
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-		// Check system color them changes
-		if (gameView?.traitCollection.userInterfaceStyle != colorMode) {
-			colorMode = gameView?.traitCollection.userInterfaceStyle
-			paint()
-			// Changing system theme with scene paused unpauses scene
-			// Pause again if the game was paused
-			isPaused = start && pauseButton.isHidden
-		}
-		
-		// Exit if game not started
-		guard start else {
+		guard playing else {
 			return
 		}
 		
-		// Move camera down
-		cam.position.y -= 1
+		cam.position.y -= camSpeed
+		if camSpeed < maxCamSpeed {
+			camSpeed += camSpeedDelta
+			lines.camSpeed = Double(camSpeed)
+		}
 		
-		// Move any lines above the screen below the screen
 		lines.wrap(center: cam.position.y)
 		
-		// Exit if the ball is onscreen
-		guard !cam.contains(ball) else {
+		if cam.contains(ball) {
 			return
 		}
 		
-		// End the game if the ball is red
-		guard ball.color != .red else {
-			reset()
+		if ball.color == .red {
+			if score > highscore {
+				highscore = score
+				localStorage.set(highscore, forKey: "highscore")
+				updateLeaderboard()
+			}
+			updateAchievements()
+			ui.showOver()
+			pause()
 			return
 		}
 		
-		// Remove a life from the ball
 		ball.die()
-		scoreXLabel.text = "x\(ball.color.rawValue)"
-		scoreXLabel.paint(ball.fillColor)
 		ball.physicsBody!.velocity = CGVector.zero
-		ball.position = CGPoint(x: 0, y: ballOffset)
+		ball.position = CGPoint(x: cam.position.x, y: cam.position.y + ballOffset)
 		
-		// If ball respawns in a platform, move ball out of platform
 		if !ball.physicsBody!.allContactedBodies().isEmpty {
 			ball.position.y += 10
 		}

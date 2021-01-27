@@ -28,4 +28,28 @@ class Heart: ScaleableNode {
 		isHidden = false
 		physicsBody!.contactTestBitMask = 1
 	}
+	
+	override func paint() {
+		super.paint()
+		
+		if !children.isEmpty {
+			(children.first! as! Text).paint()
+		}
+	}
+	
+	func score(_ amount: Int) {
+		let scoreLabel = Text("+\(amount)")
+		scoreLabel.zPosition = 2
+		addChild(scoreLabel)
+		let oldSize = size
+		size = CGSize.zero
+		physicsBody!.contactTestBitMask = 0
+		scoreLabel.position = CGPoint(x: 0, y: frame.maxY + 5)
+		scoreLabel.run(.fadeOut(withDuration: 1))
+		scoreLabel.run(.move(by: CGVector(dx: 0, dy: 20), duration: 1)) {
+			self.removeAllChildren()
+			self.size = oldSize
+			self.isHidden = true
+		}
+	}
 }
