@@ -362,8 +362,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 			if score > highscore {
 				highscore = score
 				localStorage.set(highscore, forKey: "highscore")
-				updateLeaderboard()
 			}
+			updateLeaderboard()
 			updateAchievements()
 			ui.showOver()
 			pause()
