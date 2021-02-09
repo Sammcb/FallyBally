@@ -9,10 +9,10 @@ import SpriteKit
 import GameKit
 
 class UI: SKNode {
-	let restartButton = Button(symbolName: "goforward", width: 40)
-	let playButton = Button(symbolName: "play.fill", width: 40)
-	let pauseButton = Button(symbolName: "pause.circle.fill", width: 40)
-	let resumeButton = Button(symbolName: "play.circle.fill", width: 40)
+	let restartButton = ScaleableNode(symbolName: "goforward", width: 40)
+	let playButton = ScaleableNode(symbolName: "play.fill", width: 40)
+	let pauseButton = ScaleableNode(symbolName: "pause.circle.fill", width: 40)
+	let resumeButton = ScaleableNode(symbolName: "play.circle.fill", width: 40)
 	let highscoreLabel = Text()
 	let highscoreSymbol = ScaleableNode(symbolName: "crown.fill", width: 20)
 	let scoreLabel = Text()
@@ -87,7 +87,7 @@ class UI: SKNode {
 		scoreXLabel.position = CGPoint(x: 0, y: -scoreLabel.frame.height)
 		scoreXLabel.paint(.systemRed)
 		
-		GKAccessPoint.shared.isActive = world!.localPlayer.isAuthenticated
+		GKAccessPoint.shared.isActive = world!.loginSuccess
 	}
 	
 	@objc func paint() {

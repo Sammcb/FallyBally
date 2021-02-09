@@ -50,8 +50,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	// MARK: - Camera speed
-	// Increase by 1.5 points per frame over the course of 8 minutes
-	let camSpeedDelta: CGFloat = 1.5 / (6 * 3600)
+	var camSpeedDelta: CGFloat = 0
 	let minCamSpeed: CGFloat = 1.5
 	let maxCamSpeed: CGFloat = 3
 	var camSpeed: CGFloat = 0
@@ -62,9 +61,70 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	
 	// MARK: - Game Center
 	let localPlayer = GKLocalPlayer.local
+	let idPrefix = "com.sammcb.FallyBally"
+	var achievements: [String: GKAchievement] = [:]
+	var loginSuccess = false
 	
 	// MARK: - Local save data
 	let localStorage = UserDefaults.standard
+	
+	func setupGKAccessPoint() {
+		GKAccessPoint.shared.location = .topLeading
+		GKAccessPoint.shared.showHighlights = false
+		GKAccessPoint.shared.isActive = !ui.playButton.isHidden
+	}
+	
+	func loadHighscore() {
+		GKLeaderboard.loadLeaderboards(IDs: ["\(idPrefix).scores"]) { leaderboards, error in
+			guard error == nil else {
+				return
+			}
+			
+			leaderboards!.first!.loadEntries(for: [self.localPlayer], timeScope: .allTime) { entry, entries, error in
+				guard error == nil else {
+					return
+				}
+				
+				guard let highscore = entries?.first?.score, highscore > self.highscore else {
+					return
+				}
+				
+				self.highscore = highscore
+				self.localStorage.set(highscore, forKey: "highscore")
+			}
+		}
+	}
+	
+	func loadAchievements() {
+		GKAchievement.loadAchievements() { achievements, error in
+			guard error == nil else {
+				return
+			}
+			
+			for achievement in achievements ?? [] {
+				achievement.showsCompletionBanner = true
+				self.achievements[achievement.identifier] = achievement
+			}
+			
+			GKAchievementDescription.loadAchievementDescriptions() { descriptions, error in
+				guard error == nil else {
+					return
+				}
+				
+				if descriptions == nil {
+					return
+				}
+				
+				for achievementDescription in descriptions! {
+					if self.achievements[achievementDescription.identifier] == nil {
+						let achievement = GKAchievement(identifier: achievementDescription.identifier)
+						achievement.showsCompletionBanner = true
+						self.achievements[achievementDescription.identifier] = achievement
+					}
+				}
+			}
+		}
+	}
 	
 	func authenticateUser() {
 		localPlayer.authenticateHandler = { viewController, error in
@@ -76,26 +136,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 				return
 			}
 			
-			GKAccessPoint.shared.location = .topLeading
-			GKAccessPoint.shared.showHighlights = false
-			GKAccessPoint.shared.isActive = !self.ui.playButton.isHidden
-			GKLeaderboard.loadLeaderboards(IDs: ["scores"]) { leaderboards, error in
-				guard error == nil else {
-					return
-				}
-				
-				leaderboards!.first!.loadEntries(for: [self.localPlayer], timeScope: .allTime) { entry, entries, error in
-					guard error == nil else {
-						return
-					}
-					
-					guard let highscore = entries?.first?.score, highscore > self.highscore else {
-						return
-					}
-					
-					self.highscore = highscore
-				}
-			}
+			self.setupGKAccessPoint()
+			self.loadHighscore()
+			self.loadAchievements()
+			self.loginSuccess = true
 		}
 	}
 	
@@ -104,12 +148,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		
 		physicsWorld.contactDelegate = self
 		
+		camSpeedDelta = 1.5 / CGFloat(6 * 60 * view.preferredFramesPerSecond)
 		camera = cam
 		addChild(cam)
 		
 		authenticateUser()
-		
-		didUpgrade = false
 		
 		ball.zPosition = 1
 		ball.ui = ui
@@ -138,7 +181,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	// Detect if a node was tapped
-	func pressed(button: Button, at touch: UITouch) -> Bool {
+	func pressed(button: ScaleableNode, at touch: UITouch) -> Bool {
 		nodes(at: touch.location(in: self)).contains(button)
 	}
 	
@@ -188,9 +231,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 				let bonus = 100
 				score += bonus
 				heartNode.score(bonus)
-				let upgradeOverflow = GKAchievement(identifier: "upgradeOverflow")
-				if !upgradeOverflow.isCompleted {
-					achieve(achievement: upgradeOverflow)
+				if achievementLocked(with: "upgradeOverflow") {
+					achieve(identifier: "upgradeOverflow")
 				}
 			} else {
 				didUpgrade = true
@@ -198,33 +240,28 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 				heartNode.collect()
 				switch ball.color {
 					case .orange:
-						let orange = GKAchievement(identifier: "orangeUpgrade")
-						if !orange.isCompleted {
-							achieve(achievement: orange)
+						if achievementLocked(with: "orangeUpgrade") {
+							achieve(identifier: "orangeUpgrade")
 						}
 						break
 					case .yellow:
-						let yellow = GKAchievement(identifier: "yellowUpgrade")
-						if !yellow.isCompleted {
-							achieve(achievement: yellow)
+						if achievementLocked(with: "yellowUpgrade") {
+							achieve(identifier: "yellowUpgrade")
 						}
 						break
 					case .green:
-						let green = GKAchievement(identifier: "greenUpgrade")
-						if !green.isCompleted {
-							achieve(achievement: green)
+						if achievementLocked(with: "greenUpgrade") {
+							achieve(identifier: "greenUpgrade")
 						}
 						break
 					case .blue:
-						let blue = GKAchievement(identifier: "blueUpgrade")
-						if !blue.isCompleted {
-							achieve(achievement: blue)
+						if achievementLocked(with: "blueUpgrade") {
+							achieve(identifier: "blueUpgrade")
 						}
 						break
 					case .purple:
-						let purple = GKAchievement(identifier: "purpleUpgrade")
-						if !purple.isCompleted {
-							achieve(achievement: purple)
+						if achievementLocked(with: "purpleUpgrade") {
+							achieve(identifier: "purpleUpgrade")
 						}
 						break
 					default:
@@ -233,25 +270,23 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 			}
 		} else if let lineNode = otherNode as? Line {
 			if lineNode.scored {
-				let scoreAgain = GKAchievement(identifier: "scoreAgain")
-				if !scoreAgain.isCompleted {
-					achieve(achievement: scoreAgain)
+				if ball.fillColor != lineNode.fillColor && achievementLocked(with: "scoreAgain") {
+					achieve(identifier: "scoreAgain")
 				}
 				return
 			}
 			lineNode.score(ball.fillColor)
 			score += ball.color.rawValue
-			if !didUpgrade && score >= 100 {
-				let hundred = GKAchievement(identifier: "oneHundRed")
-				if !hundred.isCompleted {
-					achieve(achievement: hundred)
-				}
+			if !didUpgrade && score >= 100 && achievementLocked(with: "oneHundRed") {
+				achieve(identifier: "oneHundRed")
 			}
 		}
 	}
 	
 	func form() {
 		score = 0
+		
+		didUpgrade = false
 
 		cam.position = CGPoint(x: frame.midX, y: frame.midY)
 		camSpeed = minCamSpeed
@@ -264,14 +299,22 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		lines.shouldSpawnHeart = 10
 		lines.place()
 		
-		if !localPlayer.isAuthenticated {
+		if !loginSuccess {
 			highscore = localStorage.integer(forKey: "highscore")
 		}
 	}
 	
-	func achieve(achievement: GKAchievement, progress: Double = 100) {
+	func achievementLocked(with identifier: String) -> Bool {
+		guard loginSuccess else {
+			return false
+		}
+		
+		return !achievements["\(idPrefix).\(identifier)"]!.isCompleted
+	}
+	
+	func achieve(identifier: String, progress: Double = 100) {
+		let achievement = achievements["\(idPrefix).\(identifier)"]!
 		achievement.percentComplete = progress
-		achievement.showsCompletionBanner = true
 		GKAchievement.report([achievement]) { error in
 			guard error == nil else {
 				return
@@ -280,11 +323,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	func updateLeaderboard() {
-		guard localPlayer.isAuthenticated else {
+		guard loginSuccess else {
 			return
 		}
 		
-		GKLeaderboard.submitScore(score, context: 0, player: localPlayer, leaderboardIDs: ["scores"]) { error in
+		GKLeaderboard.submitScore(score, context: 0, player: localPlayer, leaderboardIDs: ["\(idPrefix).scores"]) { error in
 			guard error == nil else {
 				return
 			}
@@ -292,36 +335,30 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	}
 	
 	func updateAchievements() {
-		guard localPlayer.isAuthenticated else {
+		guard loginSuccess else {
 			return
 		}
 		
-		let firstGame = GKAchievement(identifier: "firstGame")
-		if !firstGame.isCompleted {
-			achieve(achievement: firstGame)
+		if achievementLocked(with: "firstGame") {
+			achieve(identifier: "firstGame")
 		}
 		
-		let score1k = GKAchievement(identifier: "score1000")
-		if !score1k.isCompleted {
-			if score >= 1000 {
-				achieve(achievement: score1k)
-			} else {
-				achieve(achievement: score1k, progress: round(Double(score) / 1000 * 100))
+		if achievementLocked(with: "score1000") {
+			let scorePercent = trunc(Double(score) / 1000 * 100)
+			if scorePercent > achievements["\(idPrefix).score1000"]!.percentComplete {
+				achieve(identifier: "score1000", progress: scorePercent)
 			}
 		}
 		
-		let score5k = GKAchievement(identifier: "score5000")
-		if !score5k.isCompleted {
-			if score >= 5000 {
-				achieve(achievement: score5k)
-			} else  {
-				achieve(achievement: score5k, progress: round(Double(score) / 5000 * 100))
+		if achievementLocked(with: "score5000") {
+			let scorePercent = trunc(Double(score) / 5000 * 100)
+			if scorePercent > achievements["\(idPrefix).score5000"]!.percentComplete {
+				achieve(identifier: "score5000", progress: scorePercent)
 			}
 		}
 		
-		let quickGame = GKAchievement(identifier: "quickGame")
-		if !quickGame.isCompleted && Date() < startTime.addingTimeInterval(10) {
-			achieve(achievement: quickGame)
+		if Date() < Calendar.current.date(byAdding: .second, value: 10, to: startTime)! && achievementLocked(with: "quickGame") {
+			achieve(identifier: "quickGame")
 		}
 	}
 	

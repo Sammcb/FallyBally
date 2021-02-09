@@ -11,7 +11,6 @@ class Lines: SKNode {
 	let distance: CGFloat = 60
 	var nextY: CGFloat = 0
 	var bounds: CGRect = CGRect.zero
-//	var heartSpawnTime = Date()
 	var shouldSpawnHeart: Double = 10
 	var camSpeed: Double = 0
 	
@@ -23,7 +22,6 @@ class Lines: SKNode {
 		super.init(coder: aDecoder)
 	}
 
-	// Place a new line below the screen
 	private func move(_ line: SKNode) {
 		line.position = CGPoint(x: CGFloat.random(in: 0...bounds.maxX - 60), y: nextY)
 		nextY -= distance
@@ -35,12 +33,6 @@ class Lines: SKNode {
 		} else {
 			(line.children.first! as! Heart).collect()
 		}
-//		if Date() > heartSpawnTime.addingTimeInterval(30) && Bool.random() {
-//			heartSpawnTime = Date()
-//			(line.children.first! as! Heart).spawn()
-//		} else {
-//			(line.children.first! as! Heart).collect()
-//		}
 	}
 	
 	func place() {
