@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Device (please complete the following information):**
  - Device: [e.g. iPhone 12 Pro, iPad Pro 4th Generation]
  - OS: [e.g. iOS 14.4, iPadOS 14.4]
- - Version [e.g. 1.0.0]
+ - Version: [e.g. 1.0.0]
 
 **Additional context**
 Add any other context about the problem here.
