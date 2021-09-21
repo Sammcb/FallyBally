@@ -29,7 +29,7 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
@@ -52,8 +52,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

@@ -46,10 +46,11 @@ class Heart: ScaleableNode {
 		physicsBody!.contactTestBitMask = 0
 		scoreLabel.position = CGPoint(x: 0, y: frame.maxY + 5)
 		scoreLabel.run(.fadeOut(withDuration: 1))
-		scoreLabel.run(.move(by: CGVector(dx: 0, dy: 20), duration: 1)) {
-			self.removeAllChildren()
-			self.size = oldSize
-			self.isHidden = true
+		Task {
+			await scoreLabel.run(.move(by: CGVector(dx: 0, dy: 20), duration: 1))
+			removeAllChildren()
+			size = oldSize
+			isHidden = true
 		}
 	}
 }

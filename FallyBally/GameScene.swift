@@ -74,72 +74,60 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		GKAccessPoint.shared.isActive = !ui.playButton.isHidden
 	}
 	
-	func loadHighscore() {
-		GKLeaderboard.loadLeaderboards(IDs: ["\(idPrefix).scores"]) { leaderboards, error in
-			guard error == nil else {
-				return
-			}
-			
-			leaderboards!.first!.loadEntries(for: [self.localPlayer], timeScope: .allTime) { entry, entries, error in
-				guard error == nil else {
-					return
-				}
-				
-				guard let highscore = entries?.first?.score, highscore > self.highscore else {
-					return
-				}
-				
-				self.highscore = highscore
-				self.localStorage.set(highscore, forKey: "highscore")
-			}
+	func loadHighscore() async {
+		let leaderboards = try? await GKLeaderboard.loadLeaderboards(IDs: ["\(idPrefix).scores"])
+		
+		guard let mainLeaderboard = leaderboards?.first else {
+			return
 		}
+		
+		let leaderboardEntries = try? await mainLeaderboard.loadEntries(for: [localPlayer], timeScope: .allTime)
+		
+		guard let entries = leaderboardEntries?.1 else {
+			return
+		}
+		
+		guard let leaderboardHighScore = entries.first?.score, leaderboardHighScore > highscore else {
+			return
+		}
+		
+		highscore = leaderboardHighScore
+		localStorage.set(highscore, forKey: "highscore")
 	}
 	
-	func loadAchievements() {
-		GKAchievement.loadAchievements() { achievements, error in
-			guard error == nil else {
-				return
-			}
-			
-			for achievement in achievements ?? [] {
+	func loadAchievements() async {
+		let loadedAchievements = try? await GKAchievement.loadAchievements()
+		
+		for achievement in loadedAchievements ?? [] {
+			achievement.showsCompletionBanner = true
+			achievements[achievement.identifier] = achievement
+		}
+		
+		let descriptions = try? await GKAchievementDescription.loadAchievementDescriptions()
+		
+		for achievementDescription in descriptions ?? [] {
+			if achievements[achievementDescription.identifier] == nil {
+				let achievement = GKAchievement(identifier: achievementDescription.identifier)
 				achievement.showsCompletionBanner = true
-				self.achievements[achievement.identifier] = achievement
-			}
-			
-			GKAchievementDescription.loadAchievementDescriptions() { descriptions, error in
-				guard error == nil else {
-					return
-				}
-				
-				if descriptions == nil {
-					return
-				}
-				
-				for achievementDescription in descriptions! {
-					if self.achievements[achievementDescription.identifier] == nil {
-						let achievement = GKAchievement(identifier: achievementDescription.identifier)
-						achievement.showsCompletionBanner = true
-						self.achievements[achievementDescription.identifier] = achievement
-					}
-				}
+				achievements[achievementDescription.identifier] = achievement
 			}
 		}
 	}
 	
-	func authenticateUser() {
-		localPlayer.authenticateHandler = { viewController, error in
-			guard viewController == nil else {
-				return
-			}
-			
-			guard error == nil else {
-				return
-			}
-			
-			self.setupGKAccessPoint()
-			self.loadHighscore()
-			self.loadAchievements()
-			self.loginSuccess = true
+	func authenticateHandler(viewController: UIViewController?, error: Error?) {
+		guard viewController == nil else {
+			return
+		}
+		
+		guard error == nil else {
+			return
+		}
+		
+		setupGKAccessPoint()
+		loginSuccess = true
+		Task {
+			await loadHighscore()
+			await loadAchievements()
 		}
 	}
 	
@@ -152,7 +140,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		camera = cam
 		addChild(cam)
 		
-		authenticateUser()
+		localPlayer.authenticateHandler = authenticateHandler
 		
 		ball.zPosition = 1
 		ball.ui = ui
