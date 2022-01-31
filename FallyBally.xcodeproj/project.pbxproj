@@ -17,29 +17,9 @@
 		2287942025B5CFC1006BAEF7 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287941F25B5CFC0006BAEF7 /* Heart.swift */; };
 		22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C6525B1D8AB003546CA /* FallyBallyApp.swift */; };
 		22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22890C6925B1D8AC003546CA /* Assets.xcassets */; };
-		22890C6D25B1D8AC003546CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */; };
-		22890C7825B1D8AC003546CA /* FallyBallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C7725B1D8AC003546CA /* FallyBallyTests.swift */; };
-		22890C8325B1D8AC003546CA /* FallyBallyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */; };
 		22890C9425B1D8DF003546CA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9325B1D8DF003546CA /* GameScene.swift */; };
 		22890C9C25B1D964003546CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9B25B1D964003546CA /* GameView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		22890C7425B1D8AC003546CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22890C5A25B1D8AB003546CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 22890C6125B1D8AB003546CA;
-			remoteInfo = FallyBally;
-		};
-		22890C7F25B1D8AC003546CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22890C5A25B1D8AB003546CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 22890C6125B1D8AB003546CA;
-			remoteInfo = FallyBally;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		225355B825BB8A2400460EC2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
@@ -53,14 +33,7 @@
 		22890C6225B1D8AB003546CA /* FallyBally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallyBally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22890C6525B1D8AB003546CA /* FallyBallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyApp.swift; sourceTree = "<group>"; };
 		22890C6925B1D8AC003546CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22890C6E25B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallyBallyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		22890C7725B1D8AC003546CA /* FallyBallyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyTests.swift; sourceTree = "<group>"; };
-		22890C7925B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FallyBallyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyUITests.swift; sourceTree = "<group>"; };
-		22890C8425B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22890C9325B1D8DF003546CA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		22890C9B25B1D964003546CA /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,20 +44,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2287940A25B557E6006BAEF7 /* GameKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22890C7025B1D8AC003546CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22890C7B25B1D8AC003546CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				22890C6425B1D8AB003546CA /* FallyBally */,
-				22890C7625B1D8AC003546CA /* FallyBallyTests */,
-				22890C8125B1D8AC003546CA /* FallyBallyUITests */,
 				22890C6325B1D8AB003546CA /* Products */,
 				2287940825B557E6006BAEF7 /* Frameworks */,
 			);
@@ -114,8 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				22890C6225B1D8AB003546CA /* FallyBally.app */,
-				22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */,
-				22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,35 +90,8 @@
 				2287940025B52050006BAEF7 /* Lines.swift */,
 				22890C6925B1D8AC003546CA /* Assets.xcassets */,
 				22890C6E25B1D8AC003546CA /* Info.plist */,
-				22890C6B25B1D8AC003546CA /* Preview Content */,
 			);
 			path = FallyBally;
-			sourceTree = "<group>";
-		};
-		22890C6B25B1D8AC003546CA /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				22890C6C25B1D8AC003546CA /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		22890C7625B1D8AC003546CA /* FallyBallyTests */ = {
-			isa = PBXGroup;
-			children = (
-				22890C7725B1D8AC003546CA /* FallyBallyTests.swift */,
-				22890C7925B1D8AC003546CA /* Info.plist */,
-			);
-			path = FallyBallyTests;
-			sourceTree = "<group>";
-		};
-		22890C8125B1D8AC003546CA /* FallyBallyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				22890C8225B1D8AC003546CA /* FallyBallyUITests.swift */,
-				22890C8425B1D8AC003546CA /* Info.plist */,
-			);
-			path = FallyBallyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,42 +114,6 @@
 			productReference = 22890C6225B1D8AB003546CA /* FallyBally.app */;
 			productType = "com.apple.product-type.application";
 		};
-		22890C7225B1D8AC003546CA /* FallyBallyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 22890C8A25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyTests" */;
-			buildPhases = (
-				22890C6F25B1D8AC003546CA /* Sources */,
-				22890C7025B1D8AC003546CA /* Frameworks */,
-				22890C7125B1D8AC003546CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				22890C7525B1D8AC003546CA /* PBXTargetDependency */,
-			);
-			name = FallyBallyTests;
-			productName = FallyBallyTests;
-			productReference = 22890C7325B1D8AC003546CA /* FallyBallyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		22890C7D25B1D8AC003546CA /* FallyBallyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 22890C8D25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyUITests" */;
-			buildPhases = (
-				22890C7A25B1D8AC003546CA /* Sources */,
-				22890C7B25B1D8AC003546CA /* Frameworks */,
-				22890C7C25B1D8AC003546CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				22890C8025B1D8AC003546CA /* PBXTargetDependency */,
-			);
-			name = FallyBallyUITests;
-			productName = FallyBallyUITests;
-			productReference = 22890C7E25B1D8AC003546CA /* FallyBallyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,14 +125,6 @@
 				TargetAttributes = {
 					22890C6125B1D8AB003546CA = {
 						CreatedOnToolsVersion = 12.3;
-					};
-					22890C7225B1D8AC003546CA = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 22890C6125B1D8AB003546CA;
-					};
-					22890C7D25B1D8AC003546CA = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 22890C6125B1D8AB003546CA;
 					};
 				};
 			};
@@ -258,8 +142,6 @@
 			projectRoot = "";
 			targets = (
 				22890C6125B1D8AB003546CA /* FallyBally */,
-				22890C7225B1D8AC003546CA /* FallyBallyTests */,
-				22890C7D25B1D8AC003546CA /* FallyBallyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,22 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22890C6D25B1D8AC003546CA /* Preview Assets.xcassets in Resources */,
 				22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22890C7125B1D8AC003546CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22890C7C25B1D8AC003546CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,36 +175,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		22890C6F25B1D8AC003546CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				22890C7825B1D8AC003546CA /* FallyBallyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22890C7A25B1D8AC003546CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				22890C8325B1D8AC003546CA /* FallyBallyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		22890C7525B1D8AC003546CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 22890C6125B1D8AB003546CA /* FallyBally */;
-			targetProxy = 22890C7425B1D8AC003546CA /* PBXContainerItemProxy */;
-		};
-		22890C8025B1D8AC003546CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 22890C6125B1D8AB003546CA /* FallyBally */;
-			targetProxy = 22890C7F25B1D8AC003546CA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		22890C8525B1D8AC003546CA /* Debug */ = {
@@ -508,90 +346,6 @@
 			};
 			name = Release;
 		};
-		22890C8B25B1D8AC003546CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J8P6BA4WGF;
-				INFOPLIST_FILE = FallyBallyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallyBally.app/FallyBally";
-			};
-			name = Debug;
-		};
-		22890C8C25B1D8AC003546CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J8P6BA4WGF;
-				INFOPLIST_FILE = FallyBallyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FallyBally.app/FallyBally";
-			};
-			name = Release;
-		};
-		22890C8E25B1D8AC003546CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J8P6BA4WGF;
-				INFOPLIST_FILE = FallyBallyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FallyBally;
-			};
-			name = Debug;
-		};
-		22890C8F25B1D8AC003546CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J8P6BA4WGF;
-				INFOPLIST_FILE = FallyBallyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBallyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = FallyBally;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -609,24 +363,6 @@
 			buildConfigurations = (
 				22890C8825B1D8AC003546CA /* Debug */,
 				22890C8925B1D8AC003546CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		22890C8A25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				22890C8B25B1D8AC003546CA /* Debug */,
-				22890C8C25B1D8AC003546CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		22890C8D25B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBallyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				22890C8E25B1D8AC003546CA /* Debug */,
-				22890C8F25B1D8AC003546CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
