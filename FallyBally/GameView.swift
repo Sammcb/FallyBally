@@ -8,7 +8,7 @@
 import SwiftUI
 import SpriteKit
 
-let colorModeKey = "colorModeDidChange"
+let colorModeNotification = Notification.Name("colorModeDidChange")
 
 extension SKView {
 	open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -16,7 +16,7 @@ extension SKView {
 		guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else {
 			return
 		}
-		NotificationCenter.default.post(Notification(name: Notification.Name(colorModeKey)))
+		NotificationCenter.default.post(Notification(name: colorModeNotification))
 	}
 }
 

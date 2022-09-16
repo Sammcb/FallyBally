@@ -163,7 +163,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		ui.bounds = frame
 		ui.paint()
 		ui.form()
-		NotificationCenter.default.addObserver(ui, selector: #selector(ui.paint), name: NSNotification.Name(rawValue: colorModeKey), object: nil)
+		NotificationCenter.default.addObserver(ui, selector: #selector(ui.paint), name: colorModeNotification, object: nil)
 		
 		pause()
 	}
