@@ -8,46 +8,48 @@
 import SpriteKit
 import GameKit
 
-class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
+class GameScene: SKScene, UIGestureRecognizerDelegate, @preconcurrency SKPhysicsContactDelegate {
+	var gameData: GameData?
+
 	// MARK: - Game objects
 	let ballOffset: CGFloat = 100
 	let ball = Ball(radius: 10)
 	let cam = SKCameraNode()
 	let lines = Lines()
-	let ui = UI()
+//	let ui = UI()
 	
 	// MARK: - Score tracking
-	var score = 0 {
-		didSet {
-			guard oldValue != score else {
-				return
-			}
-			ui.scoreLabel.text = "\(score)"
-		}
-	}
-	var highscore = 0 {
-		didSet {
-			guard oldValue != highscore else {
-				return
-			}
-			ui.highscoreLabel.text = "\(highscore)"
-		}
-	}
+//	var score = 0 {
+//		didSet {
+//			guard oldValue != score else {
+//				return
+//			}
+//			ui.scoreLabel.text = "\(score)"
+//		}
+//	}
+//	var highscore = 0 {
+//		didSet {
+//			guard oldValue != highscore else {
+//				return
+//			}
+//			ui.highscoreLabel.text = "\(highscore)"
+//		}
+//	}
 	
 	// MARK: - Pausing
-	var playing = false
-	override var isPaused: Bool {
-		didSet {
-			guard playing else {
-				return
-			}
-
-			if isPaused {
-				ui.showPause()
-				pause()
-			}
-		}
-	}
+//	var playing = false
+//	override var isPaused: Bool {
+//		didSet {
+//			guard playing else {
+//				return
+//			}
+//
+//			if isPaused {
+//				ui.showPause()
+//				pause()
+//			}
+//		}
+//	}
 	
 	// MARK: - Camera speed
 	var camSpeedDelta: CGFloat = 0
@@ -56,80 +58,104 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 	var camSpeed: CGFloat = 0
 	
 	// MARK: - Achievements
-	var didUpgrade = false
-	var startTime = Date()
+//	var didUpgrade = false
+//	var startTime = Date()
 	
 	// MARK: - Game Center
-	let localPlayer = GKLocalPlayer.local
-	let idPrefix = "com.sammcb.FallyBally"
-	var achievements: [String: GKAchievement] = [:]
-	var loginSuccess = false
-	
-	// MARK: - Local save data
-	let localStorage = UserDefaults.standard
-	
-	func setupGKAccessPoint() {
-		GKAccessPoint.shared.location = .topLeading
-		GKAccessPoint.shared.showHighlights = false
-		GKAccessPoint.shared.isActive = !ui.playButton.isHidden
+//	let localPlayer = GKLocalPlayer.local
+//	let idPrefix = "com.sammcb.FallyBally"
+//	var achievements: [String: GKAchievement] = [:]
+//	var loginSuccess = false
+
+	private func pauseGame() {
+		physicsWorld.speed = 0
+		for child in children {
+			child.isPaused = true
+		}
 	}
-	
-	func loadHighscore() async {
-		let leaderboards = try? await GKLeaderboard.loadLeaderboards(IDs: ["\(idPrefix).scores"])
-		
-		guard let mainLeaderboard = leaderboards?.first else {
-			return
-		}
-		
-		let leaderboardEntries = try? await mainLeaderboard.loadEntries(for: [localPlayer], timeScope: .allTime)
-		
-		guard let entries = leaderboardEntries?.1 else {
-			return
-		}
-		
-		guard let leaderboardHighScore = entries.first?.score, leaderboardHighScore > highscore else {
-			return
-		}
-		
-		highscore = leaderboardHighScore
-		localStorage.set(highscore, forKey: "highscore")
-	}
-	
-	func loadAchievements() async {
-		let loadedAchievements = try? await GKAchievement.loadAchievements()
-		
-		for achievement in loadedAchievements ?? [] {
-			achievement.showsCompletionBanner = true
-			achievements[achievement.identifier] = achievement
-		}
-		
-		let descriptions = try? await GKAchievementDescription.loadAchievementDescriptions()
-		
-		for achievementDescription in descriptions ?? [] {
-			if achievements[achievementDescription.identifier] == nil {
-				let achievement = GKAchievement(identifier: achievementDescription.identifier)
-				achievement.showsCompletionBanner = true
-				achievements[achievementDescription.identifier] = achievement
+
+	func setState(_ state: GameData.State) {
+		switch state {
+		case .menu: pauseGame()
+		case .playing:
+			physicsWorld.speed = 1
+			for child in children {
+				child.isPaused = false
 			}
+		case .paused:
+			physicsWorld.speed = 0
+			for child in children {
+				child.isPaused = true
+			}
+		case .over: pauseGame()
 		}
 	}
+
+	// MARK: - Local save data
+//	let localStorage = UserDefaults.standard
 	
-	func authenticateHandler(viewController: UIViewController?, error: Error?) {
-		guard viewController == nil else {
-			return
-		}
-		
-		guard error == nil else {
-			return
-		}
-		
-		setupGKAccessPoint()
-		loginSuccess = true
-		Task {
-			await loadHighscore()
-			await loadAchievements()
-		}
-	}
+//	func setupGKAccessPoint() {
+//		GKAccessPoint.shared.location = .topLeading
+//		GKAccessPoint.shared.showHighlights = false
+//		GKAccessPoint.shared.isActive = !ui.playButton.isHidden
+//	}
+	
+//	func loadHighscore() async {
+//		let leaderboards = try? await GKLeaderboard.loadLeaderboards(IDs: ["\(idPrefix).scores"])
+//		
+//		guard let mainLeaderboard = leaderboards?.first else {
+//			return
+//		}
+//		
+//		let leaderboardEntries = try? await mainLeaderboard.loadEntries(for: [localPlayer], timeScope: .allTime)
+//		
+//		guard let entries = leaderboardEntries?.1 else {
+//			return
+//		}
+//		
+//		guard let leaderboardHighScore = entries.first?.score, leaderboardHighScore > highscore else {
+//			return
+//		}
+//		
+//		highscore = leaderboardHighScore
+//		localStorage.set(highscore, forKey: "highscore")
+//	}
+	
+//	func loadAchievements() async {
+//		let loadedAchievements = try? await GKAchievement.loadAchievements()
+//		
+//		for achievement in loadedAchievements ?? [] {
+//			achievement.showsCompletionBanner = true
+//			achievements[achievement.identifier] = achievement
+//		}
+//		
+//		let descriptions = try? await GKAchievementDescription.loadAchievementDescriptions()
+//		
+//		for achievementDescription in descriptions ?? [] {
+//			if achievements[achievementDescription.identifier] == nil {
+//				let achievement = GKAchievement(identifier: achievementDescription.identifier)
+//				achievement.showsCompletionBanner = true
+//				achievements[achievementDescription.identifier] = achievement
+//			}
+//		}
+//	}
+	
+//	func authenticateHandler(viewController: UIViewController?, error: Error?) {
+//		guard viewController == nil else {
+//			return
+//		}
+//		
+//		guard error == nil else {
+//			return
+//		}
+//		
+//		setupGKAccessPoint()
+//		loginSuccess = true
+//		Task {
+//			await loadHighscore()
+//			await loadAchievements()
+//		}
+//	}
 	
 	override func didMove(to view: SKView) {
 		view.ignoresSiblingOrder = true
@@ -140,13 +166,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		camera = cam
 		addChild(cam)
 		
-		localPlayer.authenticateHandler = authenticateHandler
+//		localPlayer.authenticateHandler = authenticateHandler
 		
 		ball.zPosition = 1
-		ball.ui = ui
+//		ball.ui = ui
 		addChild(ball)
 		
-		lines.bounds = frame
+		lines.frameBounds = frame
 		for _ in stride(from: size.height, to: -ballOffset, by: -lines.distance) {
 			let line = Line(width: 60, height: 4)
 			let heart = Heart()
@@ -158,14 +184,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		
 		form()
 		
-		cam.addChild(ui)
-		ui.world = self
-		ui.bounds = frame
-		ui.paint()
-		ui.form()
-		NotificationCenter.default.addObserver(ui, selector: #selector(ui.paint), name: colorModeNotification, object: nil)
+//		cam.addChild(ui)
+//		ui.world = self
+//		ui.frameBounds = frame
+//		ui.paint()
+//		ui.form()
 		
-		pause()
+		setState(.paused)
 	}
 	
 	// Detect if a node was tapped
@@ -178,52 +203,56 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 			return
 		}
 		
-		if pressed(button: ui.playButton, at: touches.first!) {
-			startTime = Date()
-			ui.showPlay()
-			resume()
-			return
-		}
+//		if pressed(button: ui.playButton, at: touches.first!) {
+//			startTime = Date()
+//			ui.showPlay()
+//			resume()
+//			return
+//		}
 		
-		if pressed(button: ui.pauseButton, at: touches.first!) {
-			ui.showPause()
-			pause()
-			return
-		}
+//		if pressed(button: ui.pauseButton, at: touches.first!) {
+//			ui.showPause()
+//			pause()
+//			return
+//		}
 		
-		if pressed(button: ui.resumeButton, at: touches.first!) {
-			ui.showPlay()
-			resume()
-			return
-		}
+//		if pressed(button: ui.resumeButton, at: touches.first!) {
+//			ui.showPlay()
+//			resume()
+//			return
+//		}
 
-		if pressed(button: ui.restartButton, at: touches.first!) {
-			form()
-			ui.form()
-			return
-		}
+//		if pressed(button: ui.restartButton, at: touches.first!) {
+//			form()
+//			ui.form()
+//			return
+//		}
 		
 		// Absorbe taps when paused
-		guard playing else {
-			return
-		}
+//		guard playing else {
+//			return
+//		}
 		
 		// Move the ball left or right
 		ball.physicsBody!.applyImpulse(CGVector(dx: touches.first!.location(in: self).x < frame.midX ? -2 : 2, dy: 0))
 	}
 	
 	func didBegin(_ contact: SKPhysicsContact) {
+		guard let gameData else {
+			return
+		}
+
 		let otherNode = contact.bodyA.node!.name != "ball" ? contact.bodyA.node! : contact.bodyB.node!
 		if let heartNode = otherNode as? Heart {
 			if ball.color == .purple {
 				let bonus = 100
-				score += bonus
+				gameData.score += bonus
 				heartNode.score(bonus)
 				if achievementLocked(with: "upgradeOverflow") {
 					achieve(identifier: "upgradeOverflow")
 				}
 			} else {
-				didUpgrade = true
+				gameData.didUpgrade = true
 				ball.oneUp()
 				heartNode.collect()
 				switch ball.color {
@@ -264,17 +293,20 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 				return
 			}
 			lineNode.score(ball.fillColor)
-			score += ball.color.rawValue
-			if !didUpgrade && score >= 100 && achievementLocked(with: "oneHundRed") {
+			gameData.score += ball.color.rawValue
+			if !gameData.didUpgrade && gameData.score >= 100 && achievementLocked(with: "oneHundRed") {
 				achieve(identifier: "oneHundRed")
 			}
 		}
 	}
 	
 	func form() {
-		score = 0
-		
-		didUpgrade = false
+		guard let gameData else {
+			return
+		}
+
+		gameData.score = 0
+		gameData.didUpgrade = false
 
 		cam.position = CGPoint(x: frame.midX, y: frame.midY)
 		camSpeed = minCamSpeed
@@ -287,13 +319,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		lines.shouldSpawnHeart = 10
 		lines.place()
 		
-		if !loginSuccess {
-			highscore = localStorage.integer(forKey: "highscore")
-		}
+//		if !loginSuccess {
+//			highscore = localStorage.integer(forKey: "highscore")
+//		}
 	}
 	
 	func achievementLocked(with identifier: String) -> Bool {
-		guard loginSuccess else {
+		guard GKLocalPlayer.local.isAuthenticated else {
 			return false
 		}
 		
@@ -350,27 +382,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
 		}
 	}
 	
-	func pause() {
-		playing = false
-		physicsWorld.speed = 0
-		for child in children {
-			child.isPaused = true
-		}
-	}
-	
-	func resume() {
-		playing = true
-		physicsWorld.speed = 1
-		for child in children {
-			child.isPaused = false
-		}
-	}
-	
 	override func update(_ currentTime: TimeInterval) {
-		guard playing else {
+		guard let gameData, gameData.state == .playing else {
 			return
 		}
+
 		
+
 		cam.position.y -= camSpeed
 		if camSpeed < maxCamSpeed {
 			camSpeed += camSpeedDelta

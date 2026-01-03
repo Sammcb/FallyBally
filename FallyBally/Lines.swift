@@ -10,7 +10,7 @@ import SpriteKit
 class Lines: SKNode {
 	let distance: CGFloat = 60
 	var nextY: CGFloat = 0
-	var bounds: CGRect = CGRect.zero
+	var frameBounds: CGRect = .zero
 	var shouldSpawnHeart: Double = 10
 	var camSpeed: Double = 0
 	
@@ -23,7 +23,7 @@ class Lines: SKNode {
 	}
 
 	private func move(_ line: SKNode) {
-		line.position = CGPoint(x: CGFloat.random(in: 0...bounds.maxX - 60), y: nextY)
+		line.position = CGPoint(x: CGFloat.random(in: 0...frameBounds.maxX - 60), y: nextY)
 		nextY -= distance
 		(line as! Line).reset()
 		shouldSpawnHeart -= 1 / camSpeed
@@ -43,7 +43,7 @@ class Lines: SKNode {
 	
 	func wrap(center: CGFloat) {
 		for line in children {
-			if (line.position.y > center + bounds.midY + 10) {
+			if (line.position.y > center + frameBounds.midY + 10) {
 				move(line)
 				break
 			}

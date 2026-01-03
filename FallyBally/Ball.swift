@@ -17,15 +17,15 @@ class Ball: SKShapeNode {
 		case purple
 	}
 	
-	var ui: UI?
+//	var ui: UI?
 	var color: Color = .red {
 		didSet {
 			guard oldValue != color else {
 				return
 			}
 			paint()
-			ui!.scoreXLabel.text = "x\(color.rawValue)"
-			ui!.scoreXLabel.paint(fillColor)
+//			ui!.scoreXLabel.text = "x\(color.rawValue)"
+//			ui!.scoreXLabel.paint(fillColor)
 		}
 	}
 	

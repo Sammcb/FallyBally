@@ -20,7 +20,7 @@ class UI: SKNode {
 	let yPadding: CGFloat = 90
 	let xPadding: CGFloat = 50
 	let uiZ: CGFloat = 2
-	var bounds = CGRect.zero
+	var frameBounds: CGRect = .zero
 	var world: GameScene?
 	
 	override init() {
@@ -66,7 +66,7 @@ class UI: SKNode {
 		playButton.position = CGPoint.zero
 		playButton.isHidden = false
 		
-		pauseButton.position = CGPoint(x: bounds.midX - xPadding, y: yPadding - bounds.midY)
+		pauseButton.position = CGPoint(x: frameBounds.midX - xPadding, y: yPadding - frameBounds.midY)
 		pauseButton.isHidden = true
 		
 		resumeButton.position = pauseButton.position
@@ -76,21 +76,21 @@ class UI: SKNode {
 		restartButton.isHidden = true
 		
 		highscoreLabel.text = "\(world!.highscore)"
-		highscoreLabel.position = CGPoint(x: 0, y: bounds.midY - yPadding)
+		highscoreLabel.position = CGPoint(x: 0, y: frameBounds.midY - yPadding)
 		
 		highscoreSymbol.position = CGPoint(x: 0, y: highscoreLabel.frame.height + 5)
 		
 		scoreLabel.text = "0"
-		scoreLabel.position = CGPoint(x: bounds.midX / 2 + 20, y: bounds.midY - yPadding)
+		scoreLabel.position = CGPoint(x: frameBounds.midX / 2 + 20, y: frameBounds.midY - yPadding)
 		
 		scoreXLabel.text = "x1"
 		scoreXLabel.position = CGPoint(x: 0, y: -scoreLabel.frame.height)
 		scoreXLabel.paint(.systemRed)
 		
-		GKAccessPoint.shared.isActive = world!.loginSuccess
+//		GKAccessPoint.shared.isActive = world!.loginSuccess
 	}
 	
-	@objc func paint() {
+	func paint() {
 		world!.scene!.backgroundColor = .systemBackground
 		world!.ball.paint()
 		world!.lines.paint()
@@ -108,7 +108,7 @@ class UI: SKNode {
 		playButton.isHidden = true
 		pauseButton.isHidden = false
 		resumeButton.isHidden = true
-		GKAccessPoint.shared.isActive = false
+//		GKAccessPoint.shared.isActive = false
 	}
 	
 	func showPause() {
