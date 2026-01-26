@@ -1,0 +1,13 @@
+name: CI
+on: [pull_request, workflow_dispatch, workflow_call]
+permissions: {}
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+    permissions:
+      security-events: write
+  secure:
+    uses: ./.github/workflows/secure.yml

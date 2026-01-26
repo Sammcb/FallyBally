@@ -15,6 +15,7 @@
 		22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C6525B1D8AB003546CA /* FallyBallyApp.swift */; };
 		22890C9425B1D8DF003546CA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9325B1D8DF003546CA /* GameScene.swift */; };
 		22890C9C25B1D964003546CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9B25B1D964003546CA /* GameView.swift */; };
+		228D07CF2F27059E00C987EB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 228D07CE2F27059E00C987EB /* PrivacyInfo.xcprivacy */; };
 		22A594112E50EB4D00504A98 /* SchemaVersioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A594102E50EB4900504A98 /* SchemaVersioning.swift */; };
 		22D555EC2F26CBF900CDE937 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 22D555EB2F26CBF900CDE937 /* AppIcon.icon */; };
 		22FDD0262F0976EE0037AB12 /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD0252F0976EA0037AB12 /* Life.swift */; };
@@ -32,6 +33,7 @@
 		22890C6E25B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22890C9325B1D8DF003546CA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		22890C9B25B1D964003546CA /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		228D07CE2F27059E00C987EB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		22A594102E50EB4900504A98 /* SchemaVersioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersioning.swift; sourceTree = "<group>"; };
 		22D555EB2F26CBF900CDE937 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		22FDD0252F0976EA0037AB12 /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				22D555EB2F26CBF900CDE937 /* AppIcon.icon */,
+				228D07CE2F27059E00C987EB /* PrivacyInfo.xcprivacy */,
 				22890C6E25B1D8AC003546CA /* Info.plist */,
 				22772FE02A61F1AB00AFF8D3 /* FallyBally.entitlements */,
 				22890C6425B1D8AB003546CA /* Shared */,
@@ -145,6 +148,7 @@
 		22890C6025B1D8AB003546CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				228D07CF2F27059E00C987EB /* PrivacyInfo.xcprivacy in Resources */,
 				22D555EC2F26CBF900CDE937 /* AppIcon.icon in Resources */,
 			);
 		};
