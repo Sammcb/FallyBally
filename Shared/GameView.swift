@@ -49,6 +49,9 @@ struct GameView: View {
 				SpriteView(scene: scene, options: [.allowsTransparency])
 					.onAppear {
 						scene.size = geometry.size
+						gameData.state = .menu
+						gameData.ballColor = .red
+						gameData.currentGame.score = 0
 					}
 					.onChange(of: colorScheme) {
 						scene.paint()
