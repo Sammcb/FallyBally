@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 import SpriteKit
-import GameKit
 
 struct GameView: View {
 	@Environment(\.colorScheme) private var colorScheme
@@ -29,7 +28,7 @@ struct GameView: View {
 		if gameDatas.count > expectedGameDatas {
 			gameDatas[expectedGameDatas...].forEach({ extraData in context.delete(extraData) })
 		}
-		
+
 		return gameData
 	}
 
@@ -37,28 +36,38 @@ struct GameView: View {
 	private var scene: GameScene {
 		let scene = gameScene
 		scene.gameData = gameData
-		scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 		scene.scaleMode = .fill
 		return scene
 	}
 	
 	var body: some View {
 		ZStack {
-			SpriteView(scene: scene)
-				.onChange(of: colorScheme) {
-					scene.ui.paint()
-				}
-				.onChange(of: gameData.state) {
-					scene.setState(gameData.state)
-				}
-				.onAppear {
-					GameCenter.setup(gameData: gameData)
-				}
+			Color(.systemBackground)
 
-			GameUIView(gameData: gameData)
+			GeometryReader { geometry in
+				SpriteView(scene: scene, options: [.allowsTransparency])
+					.onAppear {
+						scene.size = geometry.size
+					}
+					.onChange(of: colorScheme) {
+						scene.paint()
+					}
+					.onChange(of: gameData.state) {
+						scene.setState(gameData.state)
+					}
+					.onChange(of: gameData.currentGame.score) {
+						guard gameData.currentGame.score > gameData.highScore else {
+							return
+						}
+						gameData.highScore = gameData.currentGame.score
+					}
+			}
+			.edgesIgnoringSafeArea(.all)
+
+			GameUIView(gameData: gameData, gameScene: gameScene)
 		}
-		.edgesIgnoringSafeArea(.all)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.statusBar(hidden: true)
+		.animation(.easeIn(duration: 0.1), value: gameData.state)
 	}
 }

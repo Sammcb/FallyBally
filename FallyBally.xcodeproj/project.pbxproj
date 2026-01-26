@@ -8,48 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		2208F2252E456E040013EF0F /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208F2242E456DF70013EF0F /* GameUIView.swift */; };
-		2208F2272E45714D0013EF0F /* GameStateV1_0_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208F2262E45714B0013EF0F /* GameStateV1_0_0.swift */; };
-		225355B925BB8A2400460EC2 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225355B825BB8A2400460EC2 /* UI.swift */; };
+		2208F2272E45714D0013EF0F /* GameDataV1_0_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208F2262E45714B0013EF0F /* GameDataV1_0_0.swift */; };
 		228793F725B52045006BAEF7 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228793F625B52045006BAEF7 /* Ball.swift */; };
 		228793FC25B5204B006BAEF7 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228793FB25B5204B006BAEF7 /* Line.swift */; };
 		2287940125B52050006BAEF7 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287940025B52050006BAEF7 /* Lines.swift */; };
-		2287940A25B557E6006BAEF7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2287940925B557E6006BAEF7 /* GameKit.framework */; };
-		2287940F25B55A18006BAEF7 /* ScaleableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287940E25B55A18006BAEF7 /* ScaleableNode.swift */; };
-		2287941925B55A45006BAEF7 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287941825B55A45006BAEF7 /* Text.swift */; };
-		2287942025B5CFC1006BAEF7 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287941F25B5CFC0006BAEF7 /* Heart.swift */; };
 		22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C6525B1D8AB003546CA /* FallyBallyApp.swift */; };
-		22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22890C6925B1D8AC003546CA /* Assets.xcassets */; };
 		22890C9425B1D8DF003546CA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9325B1D8DF003546CA /* GameScene.swift */; };
 		22890C9C25B1D964003546CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22890C9B25B1D964003546CA /* GameView.swift */; };
 		22A594112E50EB4D00504A98 /* SchemaVersioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A594102E50EB4900504A98 /* SchemaVersioning.swift */; };
+		22D555EC2F26CBF900CDE937 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 22D555EB2F26CBF900CDE937 /* AppIcon.icon */; };
+		22FDD0262F0976EE0037AB12 /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD0252F0976EA0037AB12 /* Life.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2208F2242E456DF70013EF0F /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
-		2208F2262E45714B0013EF0F /* GameStateV1_0_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateV1_0_0.swift; sourceTree = "<group>"; };
-		225355B825BB8A2400460EC2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		2208F2262E45714B0013EF0F /* GameDataV1_0_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataV1_0_0.swift; sourceTree = "<group>"; };
 		22772FE02A61F1AB00AFF8D3 /* FallyBally.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FallyBally.entitlements; sourceTree = "<group>"; };
 		228793F625B52045006BAEF7 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		228793FB25B5204B006BAEF7 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		2287940025B52050006BAEF7 /* Lines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lines.swift; sourceTree = "<group>"; };
-		2287940925B557E6006BAEF7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		2287940E25B55A18006BAEF7 /* ScaleableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleableNode.swift; sourceTree = "<group>"; };
-		2287941825B55A45006BAEF7 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
-		2287941F25B5CFC0006BAEF7 /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
-		22890C6225B1D8AB003546CA /* FallyBally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallyBally.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22890C6225B1D8AB003546CA /* Fally Bally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fally Bally.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22890C6525B1D8AB003546CA /* FallyBallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallyBallyApp.swift; sourceTree = "<group>"; };
-		22890C6925B1D8AC003546CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22890C6E25B1D8AC003546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22890C9325B1D8DF003546CA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		22890C9B25B1D964003546CA /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		22A594102E50EB4900504A98 /* SchemaVersioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersioning.swift; sourceTree = "<group>"; };
+		22D555EB2F26CBF900CDE937 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		22FDD0252F0976EA0037AB12 /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		22890C5F25B1D8AB003546CA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				2287940A25B557E6006BAEF7 /* GameKit.framework in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -58,7 +49,6 @@
 		2287940825B557E6006BAEF7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2287940925B557E6006BAEF7 /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -66,7 +56,10 @@
 		22890C5925B1D8AB003546CA = {
 			isa = PBXGroup;
 			children = (
-				22890C6425B1D8AB003546CA /* FallyBally */,
+				22D555EB2F26CBF900CDE937 /* AppIcon.icon */,
+				22890C6E25B1D8AC003546CA /* Info.plist */,
+				22772FE02A61F1AB00AFF8D3 /* FallyBally.entitlements */,
+				22890C6425B1D8AB003546CA /* Shared */,
 				22890C6325B1D8AB003546CA /* Products */,
 				2287940825B557E6006BAEF7 /* Frameworks */,
 			);
@@ -75,40 +68,34 @@
 		22890C6325B1D8AB003546CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22890C6225B1D8AB003546CA /* FallyBally.app */,
+				22890C6225B1D8AB003546CA /* Fally Bally.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		22890C6425B1D8AB003546CA /* FallyBally */ = {
+		22890C6425B1D8AB003546CA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				22A594102E50EB4900504A98 /* SchemaVersioning.swift */,
-				22772FE02A61F1AB00AFF8D3 /* FallyBally.entitlements */,
 				22890C6525B1D8AB003546CA /* FallyBallyApp.swift */,
 				22890C9B25B1D964003546CA /* GameView.swift */,
 				2208F2242E456DF70013EF0F /* GameUIView.swift */,
-				2208F2262E45714B0013EF0F /* GameStateV1_0_0.swift */,
+				2208F2262E45714B0013EF0F /* GameDataV1_0_0.swift */,
 				22890C9325B1D8DF003546CA /* GameScene.swift */,
-				225355B825BB8A2400460EC2 /* UI.swift */,
-				2287941F25B5CFC0006BAEF7 /* Heart.swift */,
-				2287941825B55A45006BAEF7 /* Text.swift */,
-				2287940E25B55A18006BAEF7 /* ScaleableNode.swift */,
 				228793F625B52045006BAEF7 /* Ball.swift */,
+				22FDD0252F0976EA0037AB12 /* Life.swift */,
 				228793FB25B5204B006BAEF7 /* Line.swift */,
 				2287940025B52050006BAEF7 /* Lines.swift */,
-				22890C6925B1D8AC003546CA /* Assets.xcassets */,
-				22890C6E25B1D8AC003546CA /* Info.plist */,
 			);
-			path = FallyBally;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22890C6125B1D8AB003546CA /* FallyBally */ = {
+		22890C6125B1D8AB003546CA /* Fally Bally */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBally" */;
+			buildConfigurationList = 22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "Fally Bally" */;
 			buildPhases = (
 				22890C5E25B1D8AB003546CA /* Sources */,
 				22890C5F25B1D8AB003546CA /* Frameworks */,
@@ -116,9 +103,9 @@
 			);
 			buildRules = (
 			);
-			name = FallyBally;
+			name = "Fally Bally";
 			productName = FallyBally;
-			productReference = 22890C6225B1D8AB003546CA /* FallyBally.app */;
+			productReference = 22890C6225B1D8AB003546CA /* Fally Bally.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +116,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					22890C6125B1D8AB003546CA = {
 						CreatedOnToolsVersion = 12.3;
@@ -149,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22890C6125B1D8AB003546CA /* FallyBally */,
+				22890C6125B1D8AB003546CA /* Fally Bally */,
 			);
 		};
 /* End PBXProject section */
@@ -158,7 +145,7 @@
 		22890C6025B1D8AB003546CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				22890C6A25B1D8AC003546CA /* Assets.xcassets in Resources */,
+				22D555EC2F26CBF900CDE937 /* AppIcon.icon in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -168,18 +155,15 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				228793F725B52045006BAEF7 /* Ball.swift in Sources */,
-				2287940F25B55A18006BAEF7 /* ScaleableNode.swift in Sources */,
 				22A594112E50EB4D00504A98 /* SchemaVersioning.swift in Sources */,
 				2208F2252E456E040013EF0F /* GameUIView.swift in Sources */,
-				2287942025B5CFC1006BAEF7 /* Heart.swift in Sources */,
 				22890C9425B1D8DF003546CA /* GameScene.swift in Sources */,
-				2287941925B55A45006BAEF7 /* Text.swift in Sources */,
 				22890C9C25B1D964003546CA /* GameView.swift in Sources */,
 				22890C6625B1D8AB003546CA /* FallyBallyApp.swift in Sources */,
-				225355B925BB8A2400460EC2 /* UI.swift in Sources */,
-				2208F2272E45714D0013EF0F /* GameStateV1_0_0.swift in Sources */,
+				2208F2272E45714D0013EF0F /* GameDataV1_0_0.swift in Sources */,
 				228793FC25B5204B006BAEF7 /* Line.swift in Sources */,
 				2287940125B52050006BAEF7 /* Lines.swift in Sources */,
+				22FDD0262F0976EE0037AB12 /* Life.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -239,13 +223,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -297,67 +283,73 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		22890C8825B1D8AC003546CA /* Debug configuration for PBXNativeTarget "FallyBally" */ = {
+		22890C8825B1D8AC003546CA /* Debug configuration for PBXNativeTarget "Fally Bally" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FallyBally/FallyBally.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FallyBally.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FallyBally/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fally Bally";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBally;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		22890C8925B1D8AC003546CA /* Release configuration for PBXNativeTarget "FallyBally" */ = {
+		22890C8925B1D8AC003546CA /* Release configuration for PBXNativeTarget "Fally Bally" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FallyBally/FallyBally.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FallyBally.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FallyBally/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fally Bally";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sammcb.FallyBally;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -372,11 +364,11 @@
 			);
 			defaultConfigurationName = Release;
 		};
-		22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "FallyBally" */ = {
+		22890C8725B1D8AC003546CA /* Build configuration list for PBXNativeTarget "Fally Bally" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				22890C8825B1D8AC003546CA /* Debug configuration for PBXNativeTarget "FallyBally" */,
-				22890C8925B1D8AC003546CA /* Release configuration for PBXNativeTarget "FallyBally" */,
+				22890C8825B1D8AC003546CA /* Debug configuration for PBXNativeTarget "Fally Bally" */,
+				22890C8925B1D8AC003546CA /* Release configuration for PBXNativeTarget "Fally Bally" */,
 			);
 			defaultConfigurationName = Release;
 		};

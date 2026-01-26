@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1640"
+   LastUpgradeVersion = "2620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "22890C6125B1D8AB003546CA"
-               BuildableName = "FallyBally.app"
-               BlueprintName = "FallyBally"
+               BuildableName = "Fally Bally.app"
+               BlueprintName = "Fally Bally"
                ReferencedContainer = "container:FallyBally.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "22890C6125B1D8AB003546CA"
-            BuildableName = "FallyBally.app"
-            BlueprintName = "FallyBally"
+            BuildableName = "Fally Bally.app"
+            BlueprintName = "Fally Bally"
             ReferencedContainer = "container:FallyBally.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "22890C6125B1D8AB003546CA"
-            BuildableName = "FallyBally.app"
-            BlueprintName = "FallyBally"
+            BuildableName = "Fally Bally.app"
+            BlueprintName = "Fally Bally"
             ReferencedContainer = "container:FallyBally.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
