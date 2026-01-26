@@ -12,6 +12,7 @@ import SpriteKit
 struct GameView: View {
 	@Environment(\.colorScheme) private var colorScheme
 	@Environment(\.modelContext) private var context
+	@Environment(\.scenePhase) var scenePhase
 	@Query private var gameDatas: [GameData]
 
 	private var gameData: GameData {
@@ -60,6 +61,9 @@ struct GameView: View {
 							return
 						}
 						gameData.highScore = gameData.currentGame.score
+					}
+					.onChange(of: scenePhase) {
+						scene.setState(gameData.state)
 					}
 			}
 			.edgesIgnoringSafeArea(.all)
