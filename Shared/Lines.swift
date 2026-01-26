@@ -23,7 +23,7 @@ class Lines: SKNode {
 		self.verticalDistance = verticalDistance
 		super.init()
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		self.lifeSpawnDelay = 0
 		self.spawnThreshold = 0

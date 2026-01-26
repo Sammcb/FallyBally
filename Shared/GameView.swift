@@ -40,7 +40,7 @@ struct GameView: View {
 		scene.scaleMode = .fill
 		return scene
 	}
-	
+
 	var body: some View {
 		ZStack {
 			Color(.systemBackground)

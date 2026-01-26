@@ -44,7 +44,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 		case .over: isPaused = true
 		}
 	}
-	
+
 	override func didMove(to view: SKView) {
 		view.ignoresSiblingOrder = true
 		physicsWorld.contactDelegate = self
@@ -56,7 +56,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 		camera = cameraNode
 
 		addChild(ball)
-		
+
 		let lineSize = CGSize(width: Self.lineWidth, height: Self.lineHeight)
 		lines.setup(in: frame, lineSize: lineSize, lifeRadius: Self.lifeRadius, lifeFillAlpha: Self.lifeFillAlpha)
 		addChild(lines)
