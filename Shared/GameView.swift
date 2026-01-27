@@ -27,7 +27,13 @@ struct GameView: View {
 		// Remove extra game datas
 		let expectedGameDatas = 1
 		if gameDatas.count > expectedGameDatas {
-			gameDatas[expectedGameDatas...].forEach({ extraData in context.delete(extraData) })
+			var highestScore = gameData.highScore
+			gameDatas[expectedGameDatas...].forEach({ extraData in
+				highestScore = max(highestScore, extraData.highScore)
+				context.delete(extraData)
+			})
+			gameData.highScore = highestScore
+			try? context.save()
 		}
 
 		return gameData
@@ -64,6 +70,7 @@ struct GameView: View {
 							return
 						}
 						gameData.highScore = gameData.currentGame.score
+						try? context.save()
 					}
 					.onChange(of: scenePhase) {
 						scene.setState(gameData.state)
