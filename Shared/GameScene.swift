@@ -30,6 +30,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	private var cameraSpeedDelta: CGFloat = 0.001
 	private var cameraSpeed: CGFloat = 0
 	private var animationDuration: TimeInterval = 0
+	private var gameSetup = false
 
 	func paint() {
 		ball.paint()
@@ -139,7 +140,8 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	}
 
 	func setupGame() {
-		guard let gameData else {
+		guard let gameData, !gameSetup else {
+			isPaused = true
 			return
 		}
 
@@ -155,6 +157,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 
 		gameData.currentGame.score = 0
 		isPaused = true
+		gameSetup = true
 	}
 
 	private func updateCamera() {
@@ -171,6 +174,8 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 		guard let gameData else {
 			return
 		}
+
+		gameSetup = false
 
 		updateCamera()
 
