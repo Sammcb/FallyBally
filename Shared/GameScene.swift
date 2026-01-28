@@ -229,5 +229,4 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 			child.isPaused = false
 		}
 	}
-
 }
