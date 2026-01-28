@@ -31,7 +31,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	private var cameraSpeed: CGFloat = 0
 	private var animationDuration: TimeInterval = 0
 	private var gameSetup = false
-	var gamePaused = false
+	private var gamePaused = false
 	override var isPaused: Bool {
 		didSet {
 			if gamePaused {
