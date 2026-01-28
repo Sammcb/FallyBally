@@ -73,6 +73,9 @@ struct GameView: View {
 						try? context.save()
 					}
 					.onChange(of: scenePhase) {
+						if gameData.state == .playing {
+							gameData.state = .paused
+						}
 						scene.setState(gameData.state)
 					}
 			}
