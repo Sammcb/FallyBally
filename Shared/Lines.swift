@@ -13,7 +13,7 @@ class Lines: SKNode {
 	private let spawnThreshold: Int
 	// Vertical space between lines
 	private let verticalDistance: CGFloat
-	private var currentLifeSpawnDelay: Int = 0
+	private var currentLifeSpawnDelay = 0
 	var nextLineYCoordinate: CGFloat = 0
 
 	init(initialLifeSpawnDelay: Int, lifeSpawnDelay: Int, spawnThreshold: Int, verticalDistance: CGFloat) {
@@ -29,6 +29,10 @@ class Lines: SKNode {
 		self.spawnThreshold = 0
 		self.verticalDistance = 0
 		super.init(coder: aDecoder)
+	}
+
+	func resetLifeSpawning(initialLifeSpawnDelay: Int) {
+		self.currentLifeSpawnDelay = initialLifeSpawnDelay
 	}
 
 	func setup(in frame: CGRect, lineSize: CGSize, lifeRadius: CGFloat, lifeFillAlpha: Double) {

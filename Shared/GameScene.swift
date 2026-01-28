@@ -31,6 +31,18 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	private var cameraSpeed: CGFloat = 0
 	private var animationDuration: TimeInterval = 0
 	private var gameSetup = false
+	var gamePaused = false
+	override var isPaused: Bool {
+		didSet {
+			if gamePaused {
+				return
+			}
+
+			if isPaused {
+				pause()
+			}
+		}
+	}
 
 	func paint() {
 		ball.paint()
@@ -40,9 +52,9 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	func setState(_ state: GameData.State) {
 		switch state {
 		case .menu: setupGame()
-		case .playing: isPaused = false
-		case .paused: isPaused = true
-		case .over: isPaused = true
+		case .playing: resume()
+		case .paused: pause()
+		case .over: pause()
 		}
 	}
 
@@ -67,7 +79,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 	}
 
 	func moveBall(left: Bool) {
-		guard let ballPhysicsBody = ball.physicsBody, !isPaused else {
+		guard let ballPhysicsBody = ball.physicsBody, !gamePaused else {
 			return
 		}
 		let impulseForce = 2
@@ -141,7 +153,7 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 
 	func setupGame() {
 		guard let gameData, !gameSetup else {
-			isPaused = true
+			pause()
 			return
 		}
 
@@ -152,12 +164,13 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 		resetBall()
 
 		// Reset lines
+		lines.resetLifeSpawning(initialLifeSpawnDelay: Self.initialLifeSpawnDelay)
 		lines.nextLineYCoordinate = frame.midY
 		lines.positionLines(in: frame)
 
 		gameData.currentGame.score = 0
-		isPaused = true
 		gameSetup = true
+		pause()
 	}
 
 	private func updateCamera() {
@@ -172,6 +185,10 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 
 	override func update(_ currentTime: TimeInterval) {
 		guard let gameData else {
+			return
+		}
+
+		if gamePaused {
 			return
 		}
 
@@ -196,4 +213,21 @@ class GameScene: SKScene, @MainActor SKPhysicsContactDelegate {
 		// Game over if no lives left
 		gameData.state = .over
 	}
+
+	private func pause() {
+		gamePaused = true
+		physicsWorld.speed = 0
+		for child in children {
+			child.isPaused = true
+		}
+	}
+
+	private func resume() {
+		gamePaused = false
+		physicsWorld.speed = 1
+		for child in children {
+			child.isPaused = false
+		}
+	}
+
 }
