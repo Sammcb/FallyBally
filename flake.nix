@@ -4,9 +4,9 @@
 	inputs = {
 		# Commit does not correspond to a tag.
 		# Updating to latest commit generally follows unstable branch.
-		nixpkgs.url = "github:NixOS/nixpkgs/ce8de01ca4e1fdd238963bc91b104a21b2638743";
+		nixpkgs.url = "github:NixOS/nixpkgs/8b52132b14aab8ea16485fcdf3bbd9b9120f894b";
 		# Commit does not correspond to a tag.
-		flake-parts.url = "github:hercules-ci/flake-parts/f20dc5d9b8027381c474144ecabc9034d6a839a3";
+		flake-parts.url = "github:hercules-ci/flake-parts/3107b77cd68437b9a76194f0f7f9c55f2329ca5b";
 		flake-checker = {
 			# Commit corresponds to tag v0.2.11.
 			url = "github:DeterminateSystems/flake-checker/1d9e9f37224ff2904b7dbca5cad576725ee814e5";
